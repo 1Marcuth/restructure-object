@@ -1,10 +1,11 @@
 {
   "name": "restructure-object",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node example.ts"
+    "dev": "ts-node example.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

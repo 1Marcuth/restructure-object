@@ -3,13 +3,21 @@ export type KeyToRename = [string, string]
 export type Field = [string, any]
 export type FieldToConvertValue = [string, (value: any) => any]
 
-function restructureObject(
+export type RestructureObjectOptions = {
     rawObject: AnyObject,
-    keysToRename: KeyToRename[] = [],
-    keysToRemove: string[] = [],
-    fieldsToAdd: Field[] = [],
-    fieldsToConvertValue: FieldToConvertValue[] = []
-): AnyObject {
+    keysToRename?: KeyToRename[]
+    keysToRemove?: string[]
+    fieldsToAdd?: Field[]
+    fieldsToConvertValue?: FieldToConvertValue[]
+}
+
+function restructureObject<ObjectOutputType = AnyObject>({
+    rawObject,
+    keysToRename = [],
+    keysToRemove = [],
+    fieldsToAdd = [],
+    fieldsToConvertValue = []
+}: RestructureObjectOptions): ObjectOutputType {
     const restructuredObject: AnyObject = {}
 
     keysToRename.forEach(([oldKey, newKey]) => {
@@ -40,7 +48,7 @@ function restructureObject(
         restructuredObject[fieldKey] = fieldValue
     })
 
-    return restructuredObject
+    return restructuredObject as ObjectOutputType
 }
 
 export default restructureObject
